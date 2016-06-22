@@ -22,6 +22,65 @@ Well, we would be discussing 2nd interaction in this blog i.e. **Parent** to **C
 
 Let's take a very small example to demonstrate this:
 
+Below is a child component that has a very simple functionality - It has some text which can be shown/hidden and there is a `Show/Hide Text` button that toggles the visibility of that text.
+Text is hidden by default and once the user clicks on the button, `toggleVisibility` function is called, which also sends the source in the parameters as from where the function has been called.
 
+```child.component.ts
+import {Component} from '@angular/core';
+
+@Component({
+    selector: 'child-component',
+    template: `
+    <div>
+        <h2>Child Component</h2>
+        <div class="text">
+            <span [hidden]="!showText">I am visible now! Thanks to {{visibilitySource}}</span>
+        </div>
+        <div>
+            <button (click)="toggleVisibility('Child Component')">Show/Hide Text</button>
+        </div>
+    </div>
+    `,
+    styles:['.text { margin-bottom: 10px; color:red}']
+})
+
+export class ChildComponent {
+    showText:Boolean = false;
+    visibilitySource:String = '';
+
+    toggleVisibility(source) {
+        this.showText = !this.showText;
+        this.visibilitySource = source;
+    }
+
+}
+```
+
+And here is the **parent component** for that **child component**:
+
+```app.component.ts
+import {Component} from '@angular/core';
+import {ChildComponent} from './child.component';
+
+@Component({
+    selector: 'my-app',
+    template: `
+    <div>
+    <h1>Parent Component</h1>
+    <child-component></child-component>
+    </div>
+    `,
+    directives:[ChildComponent]
+})
+
+export class AppComponent {
+}
+```
+
+Now assume, **parent component** also wants to show/hide the text displayed by the **child component**, so to achieve that we need to do the following:
+
+1. Import **ViewChild** from `@angular/core`. So now first line of our `app.component.ts` would look like:
+
+`import {Component,ViewChild} from '@angular/core';`
 
 
