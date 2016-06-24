@@ -18,7 +18,10 @@ Notice two interactions here:
 1. Child Component to Parent Component : GameResetComponent -> GameComponent
 2. Parent Component to Child Component : GameComponent -> GameBoardComponent
 
+The scheme of interactions discussed above is based on the **Mediator Design Pattern**. **Parent component** is acting as a **central authority** which is responsible for communication between **child components**.
+
 Well, we would be discussing 2nd interaction in this blog i.e. **Parent** to **Child**. So suppose when a **parent component** needs to call a **child component** function, it can inject **child component** as a **ViewChild** in **parent component**.
+
 
 Let's take a very small example to demonstrate this:
 
@@ -66,6 +69,7 @@ import {ChildComponent} from './child.component';
     selector: 'my-app',
     template: `
     <div>
+    <button (click)="showHideText()">Show/Hide Child Component Text</button>
     <h1>Parent Component</h1>
     <child-component></child-component>
     </div>
@@ -74,6 +78,10 @@ import {ChildComponent} from './child.component';
 })
 
 export class AppComponent {
+
+showHideText(){
+        // TODO: Access child component to toggle text visibility
+    }
 }
 ```
 
@@ -82,5 +90,51 @@ Now assume, **parent component** also wants to show/hide the text displayed by t
 1. Import **ViewChild** from `@angular/core`. So now first line of our `app.component.ts` would look like:
 
 `import {Component,ViewChild} from '@angular/core';`
+
+In the above line we have imported the **ViewChild**, an annotation provided by **Angular** for getting reference of child components.
+
+2. Let's add the following snippet to our AppComponent class:
+
+`@ViewChild(ChildComponent) childComponent:ChildComponent;`
+
+We are querying the `ChildComponent` using `@ViewChild` property decoration and injecting it to `childComponent` property.
+
+This `childComponent` property will now provide us access to the child component. We know that our child component i.e. `ChildComponent` has a `toggleVisibility` function that shows/hides text and also displays the source which made it visible. In the code below
+we have defined the `showHideText` method which then calls the `toggleVisibility` function through `childComponent` property.
+
+```
+showHideText(){
+        this.childComponent.toggleVisibility('Parent Component');
+    }
+```
+
+If we combine all the parts, our `app.component.ts` would now look as:
+
+```
+import {Component,ViewChild} from '@angular/core';
+import {ChildComponent} from './child.component';
+
+@Component({
+    selector: 'my-app',
+    template: `
+    <div>
+    <h1>Parent Component</h1>
+    <button (click)="showHideText()">Show/Hide Child Component Text</button>
+    <child-component></child-component>
+    </div>
+    `,
+    directives:[ChildComponent]
+})
+
+export class AppComponent {
+    @ViewChild(ChildComponent) childComponent:ChildComponent;
+    showHideText(){
+        this.childComponent.toggleVisibility('Parent Component');
+    }
+
+}
+```
+
+In **Angular2** there are multiple ways of interaction between components, **ViewChild** is just one of them!
 
 
