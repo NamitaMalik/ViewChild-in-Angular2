@@ -81,7 +81,7 @@ And here is the **parent** **component** for that **child** **component**:
 
 **app.component.ts**
 ```TypeScript
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {ChildComponent} from './child.component';
 
 @Component({
@@ -97,10 +97,8 @@ import {ChildComponent} from './child.component';
 })
 
 export class AppComponent {
-    @ViewChild(ChildComponent) childComponent:ChildComponent;
-
     showHideText() {
-        this.childComponent.toggleVisibility('Parent Component');
+        // TODO: Access child component to toggle text visibility
     }
 }
 ```
