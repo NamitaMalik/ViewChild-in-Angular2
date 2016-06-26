@@ -12,9 +12,9 @@ To be more elaborate let us a take a small example. Suppose there is a small gam
 There are multiple ways to achieve the interaction between the above **components**, and one of them is **ViewChild**.
 
 So, a user starts playing the game and after he no valid moves are left, he plans to reset the game. He clicks on the `Reset` 
-button which is the part of the `GameResetComponent(Child **Component**)`. The `GameResetComponent(Child **Component**)` then 
-interacts with `GameComponent (Parent **Component**)` and would request for reset. The `GameComponent(Parent **Component**)` would 
-then reset the game board by interacting with `GameBoardComponent(Child **Component*)` in order to reset the board.
+button which is the part of the `GameResetComponent(Child Component)`. The `GameResetComponent(Child Component)` then 
+interacts with `GameComponent (Parent Component)` and would request for reset. The `GameComponent(Parent Component)` would 
+then reset the game board by interacting with `GameBoardComponent(Child Component)` in order to reset the board.
 
 Notice two interactions here:
 
