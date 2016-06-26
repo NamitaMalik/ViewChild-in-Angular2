@@ -1,5 +1,5 @@
 /**
- * Created by namita on 6/15/16.
+ * Created by Namita Malik on 6/15/16.
  */
 
 import {Component} from '@angular/core';
@@ -17,7 +17,7 @@ import {Component} from '@angular/core';
         </div>
     </div>
     `,
-    styles:['.text { margin-bottom: 10px; color:red}']
+    styles: ['.text { margin-bottom: 10px; color:red}']
 })
 
 export class ChildComponent {
@@ -28,5 +28,4 @@ export class ChildComponent {
         this.showText = !this.showText;
         this.visibilitySource = source;
     }
-
 }
