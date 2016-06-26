@@ -17,7 +17,7 @@ import {ChildComponent} from './child.component';
 })
 
 export class AppComponent {
-    @ViewChild(ChildComponent) childComponent:ChildComponent;
+    @ViewChild(ChildComponent) private childComponent:ChildComponent;
 
     showHideText() {
         this.childComponent.toggleVisibility('Parent Component');
