@@ -96,16 +96,12 @@ Now assume, **parent** **component** also wants to show/hide the text displayed 
 the following:
 
 1. Import **ViewChild** from `@angular/core`. So now first line of our `app.component.ts` would look like:
-
-`import {Component,ViewChild} from '@angular/core';`
-
-In the above line we have imported the **ViewChild**, an annotation provided by **Angular2** for getting reference of child **components**.
+    `import {Component,ViewChild} from '@angular/core';`
+    In the above line we have imported the **ViewChild**, an annotation provided by **Angular2** for getting reference of child **components**.
 
 2. Let's add the following snippet to our AppComponent class:
-
-`@ViewChild(ChildComponent) private childComponent:ChildComponent;`
-
-We are querying the `ChildComponent` using `@ViewChild` property decoration and injecting it to `childComponent` property.
+    `@ViewChild(ChildComponent) private childComponent:ChildComponent;`
+    We are querying the `ChildComponent` using `@ViewChild` property decoration and injecting it to private `childComponent` property.
 
 This `childComponent` property will now provide us access to the child **component**. We know that our child **component** i.e. `ChildComponent` 
 has a `toggleVisibility` function that shows/hides text and also displays the source which made it visible. In the code below we have 
