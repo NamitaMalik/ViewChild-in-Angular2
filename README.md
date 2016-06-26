@@ -117,7 +117,7 @@ provided by **Angular2** for getting reference of child **components**.
 
 2. Let's add the following snippet to our AppComponent class:
 
-`@ViewChild(ChildComponent) childComponent:ChildComponent;`
+`@ViewChild(ChildComponent) private childComponent:ChildComponent;`
 
 We are querying the `ChildComponent` using `@ViewChild` property 
 decoration and injecting it to `childComponent` property.
@@ -154,7 +154,7 @@ import {ChildComponent} from './child.component';
 })
 
 export class AppComponent {
-    @ViewChild(ChildComponent) childComponent:ChildComponent;
+    @ViewChild(ChildComponent) private childComponent:ChildComponent;
 
     showHideText() {
         this.childComponent.toggleVisibility('Parent Component');
