@@ -1,6 +1,6 @@
 # ViewChild in Angular2
 
-There are situations when a **Parent Component** needs to interact with **Child Component** and we will discuss a solution for 
+There are situations when a **Parent Component** needs to interact with **Child Component** so we will discuss a solution for 
 those cases in this writeup.
 
 To be more elaborate let us a take a small example. Suppose there is a small game which has multiple **components** as given below:
